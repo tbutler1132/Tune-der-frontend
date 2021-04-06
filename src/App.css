@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+/* login styling */
+
+.login-form {
+  flex: content;
+}
+
+/* profile styling */
+.profile {
+  border: solid;
+}
+
+.container {
+  width: 500px;
+}
