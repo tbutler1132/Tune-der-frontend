@@ -75,15 +75,13 @@ function App(props) {
     .catch(error => console.log(error))
   }
 
-  console.log(loggedInUser)
-
   return (
     <div className="App">
       <ProfileHeader />
       <Switch>
         <Route path="/login" render={() => <Login currentUser={loggedInUser} loginHandler={loginHandler} />}/>
         <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={loggedInUser}/>}/>
-        <Route path="/app/recs" render={() =><RecsContainer />}/>
+        <Route path="/app/recs" render={() =><RecsContainer currentUser={loggedInUser}/>}/>
         <Route path="/app/profile" render={() =><UserProfileContainer currentUser={loggedInUser}/>}/>
       </Switch>
     </div>
