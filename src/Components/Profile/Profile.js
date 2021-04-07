@@ -29,7 +29,7 @@ function Profile(props) {
             {expanded ?
                 <> 
 
-                <img src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
+                <img id="profile-profile-pic" src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
 
                 <p>{props.user.demos[demoDisplay].title}</p>
                 {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}

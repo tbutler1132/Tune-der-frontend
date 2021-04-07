@@ -78,7 +78,6 @@ function App(props) {
   
   return (
     <div className="App">
-      <ProfileHeader currentUser={props.currentUser}/>
       <Switch>
         <Route path="/login" render={() => <Login currentUser={props.currentUser} loginHandler={loginHandler} />}/>
         <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={props.currentUser}/>}/>

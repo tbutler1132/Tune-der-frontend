@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -45,9 +49,56 @@
 
 /* profile styling */
 .profile {
-  border: solid;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: solid; */
+  border-radius: 5%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  /* margin-right: 25%;
+  margin-left: 25%; */
+  width: 450px;
+  overflow: scroll;
+  height: 600px;
+  padding-top: 15px;
 }
 
-.container {
-  width: 500px;
+.recs-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0%;
+}
+
+
+.left-side {
+  /* border: solid;
+  border-color: #61dafb; */
+  padding-top: 0%;
+  width: 20%;
+  float: left;
+}
+
+.header {
+  border: solid;
+  border-color: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);;
+  
+}
+
+.recs {
+  /* border: solid;
+  border-color: red; */
+  background-color: rgb(250, 246, 246);
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  width: 80%;
+  float: right;
+}
+
+img {
+  border-radius: 50%;
 }

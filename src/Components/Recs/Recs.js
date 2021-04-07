@@ -7,15 +7,16 @@ import MatchButtons from '../Matches/MatchButtons'
 function Recs(props) {
 
     const [displayedUser, changeDisplayedUser] = useState(false)
+    
+    const matches = props.currentUser.first.concat(props.currentUser.second)
 
-    //  When the component mounts select a user for their profile to be displayed. Right now it is random but algorithm will
-    //be updated to match alike profiles
+    //  When the component mounts select a user for their profile to be displayed.
     useEffect(() => {
-        const float = Math.random() * (props.users.length - 0) + 0;
-        changeDisplayedUser(props.users[Math.floor(float)])
+        pickPotentialMatch()
     }, [])
 
-    const pickRandomUser = () => {
+    //Right now it is random but algorithm will be updated to match alike profiles
+    const pickPotentialMatch = () => {
         const float = Math.random() * (props.users.length - 0) + 0;
         changeDisplayedUser(props.users[Math.floor(float)])
     }
@@ -24,7 +25,7 @@ function Recs(props) {
         displayedUser  ?
             <div>
                 <Profile currentUser={props.currentUser} user={displayedUser}/>
-                <MatchButtons currentUser={props.currentUser} displayedUser={displayedUser} pickRandomUser={pickRandomUser}/>
+                <MatchButtons currentUser={props.currentUser} displayedUser={displayedUser} pickPotentialMatch={pickPotentialMatch}/>
             </div>
         :
         <p>Loading</p>

@@ -5,12 +5,15 @@ import {getUsers} from '../../Redux/actions'
 import Recs from './Recs'
 import Matches from '../Matches/Matches'
 import Messages from '../Messages/Messages'
+import ProfileHeader from '../ProfileHeader'
 
 
 function RecsContainer(props) {
 
-    //Destructure props
-    const { currentUser } = props
+console.log(props.currentUser)
+
+//Destructure props
+const { currentUser } = props
 
 // Fetch users so their profiles can potentially be displayed
     useEffect(() => {
@@ -19,11 +22,15 @@ function RecsContainer(props) {
 
     return (
         props.users.length > 0 ?
-        <div>
-            <h1>Recs Container</h1>
-            <Recs currentUser={currentUser}/>
-            <Matches currentUser={currentUser}/>
-            <Messages />
+        <div className="recs-container">
+            <div className="left-side">
+                <ProfileHeader currentUser={props.currentUser} />
+                <Matches currentUser={currentUser}/>
+                <Messages />
+            </div>
+            <div className="recs">
+                <Recs currentUser={currentUser}/>
+            </div>
         </div>
         :
         <p>Loading...</p>

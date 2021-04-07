@@ -10,6 +10,7 @@ function UserProfileContainer(props) {
             {props.currentUser ?
                 <>
                 <Profile user={props.currentUser}/>
+                <p>Click to Edit Profile</p>
                 <Settings />
                 </>
             :

@@ -5,15 +5,13 @@ import CloseIcon from '@material-ui/icons/Close';
 
 function MatchButtons(props) {
 
+
+
     //Try to refactor
     const displayedUserHasLikedCurrentUser = () => {
         const likersIds = props.currentUser.likers.map(likers => likers.id)
-        console.log(likersIds)
-        console.log(props.displayedUser.id)
         return likersIds.includes(props.displayedUser.id)
     }
-
-    console.log(displayedUserHasLikedCurrentUser())
 
     // Add Like/Match to the database
     const addLikeToDatabase = () => {
@@ -69,8 +67,8 @@ function MatchButtons(props) {
 
     return (
         <div>
-            <CloseIcon onClick={props.pickRandomUser}/>
-            <GradeIcon onClick={props.pickRandomUser, addLikeToDatabase}/>
+            <CloseIcon onClick={props.pickPotentialMatch}/>
+            <GradeIcon onClick={props.pickPotentialMatch, addLikeToDatabase}/>
         </div>
     );
 }
