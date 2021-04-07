@@ -2,16 +2,18 @@ import './App.css';
 import {Route, Switch} from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
 import {useState, useEffect} from 'react'
+import {compose} from 'redux'
+import {connect} from 'react-redux'
 
 import RecsContainer from './Components/Recs/RecsContainer'
 import UserProfileContainer from './Components/UserProfile/UserProfileContainer'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import ProfileHeader from './Components/ProfileHeader'
-import Profile from './Components/Profile/Profile';
+
 
 function App(props) {
-  const [loggedInUser, setLoggedInUser] = useState(false)
+  // const [loggedInUser, setLoggedInUser] = useState(false)
 
   //Check if user has been authenticated 
 
@@ -25,7 +27,7 @@ function App(props) {
       })
       .then(r => r.json())
         .then(data => {
-          setLoggedInUser(data.user);
+          props.setCurrentUser(data.user);
       })
       .catch(error => console.log(error))
     } else {
@@ -46,8 +48,7 @@ function App(props) {
     })
     .then(r => r.json())
     .then(data => {
-      console.log(data.user)
-      setLoggedInUser(data.user)
+      props.setCurrentUser(data.user)
       localStorage.setItem("token", data.jwt)
       props.history.push(`/app/recs`)
     })
@@ -68,24 +69,35 @@ function App(props) {
     .then(r => r.json())
     .then(data => {
       console.log(data)
-      setLoggedInUser(data.user)
+      props.setCurrentUser(data.user)
       localStorage.setItem("token", data.jwt)
       props.history.push('/app/recs')
     })
     .catch(error => console.log(error))
   }
-
+  
   return (
     <div className="App">
-      <ProfileHeader />
+      <ProfileHeader currentUser={props.currentUser}/>
       <Switch>
-        <Route path="/login" render={() => <Login currentUser={loggedInUser} loginHandler={loginHandler} />}/>
-        <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={loggedInUser}/>}/>
-        <Route path="/app/recs" render={() =><RecsContainer currentUser={loggedInUser}/>}/>
-        <Route path="/app/profile" render={() =><UserProfileContainer currentUser={loggedInUser}/>}/>
+        <Route path="/login" render={() => <Login currentUser={props.currentUser} loginHandler={loginHandler} />}/>
+        <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={props.currentUser}/>}/>
+        <Route path="/app/recs" render={() =><RecsContainer currentUser={props.currentUser}/>}/>
+        <Route path="/app/profile" render={() =><UserProfileContainer currentUser={props.currentUser}/>}/>
       </Switch>
     </div>
   );
 }
 
-export default withRouter(App);
+const mapStateToProps = (state) => {
+  return {currentUser: state.currentUser}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {setCurrentUser: (userObj) => dispatch({type: "add_current_user", payload: userObj})}
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter)
+  (App);

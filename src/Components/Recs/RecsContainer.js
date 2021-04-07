@@ -1,43 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux'
 import {getUsers} from '../../Redux/actions'
 
-import Profile from '../Profile/Profile'
-import Matches from './Matches'
-import Messages from './Messages'
-import MatchButtons from './MatchButtons'
+import Recs from './Recs'
+import Matches from '../Matches/Matches'
+import Messages from '../Messages/Messages'
+
 
 function RecsContainer(props) {
 
-    const [displayedUser, changeDisplayedUser] = useState({})
+    //Destructure props
+    const { currentUser } = props
 
+// Fetch users so their profiles can potentially be displayed
     useEffect(() => {
         props.fetchUsers()
     }, [])
-
-    //Display a potential match, right now the algorithm is just completely randomized
-    const renderPotentialMatchProfile = () => {
-        const float = Math.random() * (props.users.length - 0) + 0;
-        if (props.users[Math.floor(float)].id === props.currentUser.id){
-            renderPotentialMatchProfile()
-        } else {
-            console.log("they are not equal")
-            return (<Profile user={props.users[Math.floor(float)]}/>)
-        }
-    }
-
-    const pickRandomUser = () => {
-        const float = Math.random() * (props.users.length - 0) + 0;
-        return props.users[Math.floor(float)]
-    }
 
     return (
         props.users.length > 0 ?
         <div>
             <h1>Recs Container</h1>
-            {renderPotentialMatchProfile()}
-            <MatchButtons showNewProfile={renderPotentialMatchProfile}/>
-            <Matches />
+            <Recs currentUser={currentUser}/>
+            <Matches currentUser={currentUser}/>
             <Messages />
         </div>
         :
@@ -45,10 +30,12 @@ function RecsContainer(props) {
     );
 }
 
+//Add state of users to props
 const mapStateToProps = (state) => {
     return {users: state.users}
 }
 
+//Fetch users from database
 const mapDispatchToProps = (dispatch) => {
     return {fetchUsers: () => dispatch(getUsers())}
 }

@@ -6,11 +6,11 @@ function Login(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    useEffect(() => {
-        if (props.currentUser){
+    // useEffect(() => {
+    //     if (props.currentUser){
 
-        }
-    })
+    //     }
+    // })
 
     const emailHandler = (e) => {
         setEmail(e.target.value)

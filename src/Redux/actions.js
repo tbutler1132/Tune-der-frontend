@@ -9,3 +9,9 @@ export const getUsers = () => {
         )
     }
 }
+
+export const addCurrentUser = (userObj) => {
+    return function (dispatch){
+        dispatch({type: "add_current_user", payload: userObj})
+    }
+}

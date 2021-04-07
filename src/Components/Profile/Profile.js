@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import AudioPlayer from 'react-h5-audio-player';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ReactAudioPlayer from 'react-audio-player'
@@ -33,13 +32,13 @@ function Profile(props) {
                 <img src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
 
                 <p>{props.user.demos[demoDisplay].title}</p>
-                {demoDisplay != 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
+                {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
                 <ReactAudioPlayer
                     src={audioSource}
                     controls={true}
                     playing={true}
                 />
-                {demoDisplay != props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
+                {demoDisplay !== props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
 
                 <h1>{props.user.name}</h1>
                 {/* <MusicNoteIcon />  */}
@@ -56,13 +55,13 @@ function Profile(props) {
                 <img src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
 
                 <p>{props.user.demos[demoDisplay].title}</p>
-                {demoDisplay != 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
+                {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
                 <ReactAudioPlayer
                     src={audioSource}
                     controls={true}
                     playing={true}
                 />
-                {demoDisplay != props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
+                {demoDisplay !== props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
 
                 <h1>{props.user.name}</h1>
                 <h3>{props.user.role}</h3>
