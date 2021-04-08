@@ -4,18 +4,22 @@ import GradeIcon from '@material-ui/icons/Grade';
 import CloseIcon from '@material-ui/icons/Close';
 
 function MatchButtons(props) {
+//The match buttons are responsible for:
+//1. Triggering the render of a new user to display
+//2. Updating a users' likes and matches
 
 
-
-    //Try to refactor
+//Determine if the current user has previously liked the currently displayed user
     const displayedUserHasLikedCurrentUser = () => {
         const likersIds = props.currentUser.likers.map(likers => likers.id)
         return likersIds.includes(props.displayedUser.id)
     }
 
-    // Add Like/Match to the database
+// Add new Like/Match to the database
     const addLikeToDatabase = () => {
-    
+
+        props.pickPotentialMatch()
+
         const newLike = {
             liker_id: props.currentUser.id,
             liked_id: props.displayedUser.id,
@@ -68,7 +72,7 @@ function MatchButtons(props) {
     return (
         <div>
             <CloseIcon onClick={props.pickPotentialMatch}/>
-            <GradeIcon onClick={props.pickPotentialMatch, addLikeToDatabase}/>
+            <GradeIcon onClick={addLikeToDatabase}/>
         </div>
     );
 }

@@ -5,17 +5,18 @@ import Profile from '../Profile/Profile'
 import MatchButtons from '../Matches/MatchButtons'
 
 function Recs(props) {
+//This component is also a bit of a data handler, taking all users' profiles and performing an algorithm to display ONE to the current user
+//Once it has calculated a user to display, it displays that one user
+//It also renders Match Buttons which will perform the core matching functionality of the app
 
     const [displayedUser, changeDisplayedUser] = useState(false)
     
-    const matches = props.currentUser.first.concat(props.currentUser.second)
-
-    //  When the component mounts select a user for their profile to be displayed.
+//  When the component mounts select a user for their profile to be displayed.
     useEffect(() => {
         pickPotentialMatch()
     }, [])
 
-    //Right now it is random but algorithm will be updated to match alike profiles
+//Right now the algo is random but it will be updated to match alike profiles
     const pickPotentialMatch = () => {
         const float = Math.random() * (props.users.length - 0) + 0;
         changeDisplayedUser(props.users[Math.floor(float)])

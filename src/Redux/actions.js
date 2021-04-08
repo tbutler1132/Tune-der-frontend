@@ -1,5 +1,5 @@
-//Fetch users from which to display potential matches
 
+//Fetch users from which to display potential matches
 export const getUsers = () => {
     return function(dispatch){
         fetch(`http://localhost:3000/users`)

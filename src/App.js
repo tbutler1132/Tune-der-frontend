@@ -1,7 +1,7 @@
 import './App.css';
 import {Route, Switch} from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 
@@ -9,7 +9,7 @@ import RecsContainer from './Components/Recs/RecsContainer'
 import UserProfileContainer from './Components/UserProfile/UserProfileContainer'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
-import ProfileHeader from './Components/ProfileHeader'
+
 
 
 function App(props) {
@@ -27,6 +27,7 @@ function App(props) {
       })
       .then(r => r.json())
         .then(data => {
+          console.log(data.user)
           props.setCurrentUser(data.user);
       })
       .catch(error => console.log(error))
@@ -75,16 +76,21 @@ function App(props) {
     })
     .catch(error => console.log(error))
   }
+
+  console.log(props)
   
   return (
+    props.currentUser ?
     <div className="App">
       <Switch>
         <Route path="/login" render={() => <Login currentUser={props.currentUser} loginHandler={loginHandler} />}/>
         <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={props.currentUser}/>}/>
-        <Route path="/app/recs" render={() =><RecsContainer currentUser={props.currentUser}/>}/>
+        <Route path="/app/recs" render={() =><RecsContainer />}/>
         <Route path="/app/profile" render={() =><UserProfileContainer currentUser={props.currentUser}/>}/>
       </Switch>
     </div>
+    :
+    <p>Loading...</p>
   );
 }
 
