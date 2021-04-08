@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import GradeIcon from '@material-ui/icons/Grade';
 import CloseIcon from '@material-ui/icons/Close';
+import { addNewMatch } from '../../Redux/actions';
 
 function MatchButtons(props) {
 //The match buttons are responsible for:
 //1. Triggering the render of a new user to display
 //2. Updating a users' likes and matches
-
 
 //Determine if the current user has previously liked the currently displayed user
     const displayedUserHasLikedCurrentUser = () => {
@@ -38,6 +39,7 @@ function MatchButtons(props) {
         .then(r => r.json())
         .then(data => {
             console.log(data)
+            props.addNewLike(data)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -62,6 +64,7 @@ function MatchButtons(props) {
             .then(r => r.json())
             .then(data => {
                 console.log(data)
+                props.addNewMatch(data)
             })
             .catch(error => {
                 console.log('Error:', error);
@@ -77,4 +80,17 @@ function MatchButtons(props) {
     );
 }
 
-export default MatchButtons;
+const mapStateToProps = (state) => ({
+    
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addNewLike: (likeObj) => dispatch({type: "add_like", payload: likeObj}),
+        addNewMatch: (matchObj) => dispatch({type: "add_match", payload: matchObj})
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MatchButtons)

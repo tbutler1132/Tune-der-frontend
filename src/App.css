@@ -64,6 +64,15 @@
   padding-top: 15px;
 }
 
+.upload-new-demo {
+  display: flex;
+}
+
+.edit-profile-textfields {
+  display: flex;
+  flex-direction: column;
+}
+
 .recs-container {
   display: flex;
   justify-content: flex-start;

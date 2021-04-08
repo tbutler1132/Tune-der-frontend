@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
 import {useEffect} from 'react'
 import {compose} from 'redux'
@@ -13,7 +13,10 @@ import SignUp from './Components/SignUp'
 
 
 function App(props) {
-  // const [loggedInUser, setLoggedInUser] = useState(false)
+
+//Desctructure Props
+const {history, currentUser, setCurrentUser} = props
+
 
   //Check if user has been authenticated 
 
@@ -27,14 +30,13 @@ function App(props) {
       })
       .then(r => r.json())
         .then(data => {
-          console.log(data.user)
-          props.setCurrentUser(data.user);
+          setCurrentUser(data.user);
       })
       .catch(error => console.log(error))
     } else {
-      props.history.push('/login')
+      history.push('/login')
     }
-  }, [props.history]);
+  }, [history, setCurrentUser]);
 
   //Allow user to login
 
@@ -49,9 +51,9 @@ function App(props) {
     })
     .then(r => r.json())
     .then(data => {
-      props.setCurrentUser(data.user)
+      setCurrentUser(data.user)
       localStorage.setItem("token", data.jwt)
-      props.history.push(`/app/recs`)
+      history.push(`/app/recs`)
     })
     .catch(error => console.log(error))
   }
@@ -70,27 +72,29 @@ function App(props) {
     .then(r => r.json())
     .then(data => {
       console.log(data)
-      props.setCurrentUser(data.user)
+      setCurrentUser(data.user)
       localStorage.setItem("token", data.jwt)
-      props.history.push('/app/recs')
+      history.push('/app/recs')
     })
     .catch(error => console.log(error))
   }
-
-  console.log(props)
   
   return (
-    props.currentUser ?
     <div className="App">
-      <Switch>
-        <Route path="/login" render={() => <Login currentUser={props.currentUser} loginHandler={loginHandler} />}/>
-        <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={props.currentUser}/>}/>
-        <Route path="/app/recs" render={() =><RecsContainer />}/>
-        <Route path="/app/profile" render={() =><UserProfileContainer currentUser={props.currentUser}/>}/>
-      </Switch>
+      {!currentUser ? 
+        <Switch>
+          <Route path="/login" render={() => <Login currentUser={currentUser} loginHandler={loginHandler} />}/>
+          <Route path="/signup" render={() => <SignUp signUpHandler={signUpHandler} currentUser={currentUser}/>}/>
+        </Switch>
+      :
+        <Switch>
+          <Route exact path="/"><Redirect to="app/recs"/></Route>
+          <Route path="/app/recs" render={() =><RecsContainer />}/>
+          <Route path="/app/profile" render={() =><UserProfileContainer currentUser={currentUser}/>}/>
+        </Switch>
+
+      }
     </div>
-    :
-    <p>Loading...</p>
   );
 }
 

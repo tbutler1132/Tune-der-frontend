@@ -9,6 +9,8 @@ function Recs(props) {
 //Once it has calculated a user to display, it displays that one user
 //It also renders Match Buttons which will perform the core matching functionality of the app
 
+    const {potentialMatches, currentUser} = props
+
     const [displayedUser, changeDisplayedUser] = useState(false)
     
 //  When the component mounts select a user for their profile to be displayed.
@@ -18,15 +20,15 @@ function Recs(props) {
 
 //Right now the algo is random but it will be updated to match alike profiles
     const pickPotentialMatch = () => {
-        const float = Math.random() * (props.users.length - 0) + 0;
-        changeDisplayedUser(props.users[Math.floor(float)])
+        const float = Math.random() * (potentialMatches.length - 0) + 0;
+        changeDisplayedUser(potentialMatches[Math.floor(float)])
     }
 
     return (
         displayedUser  ?
             <div>
-                <Profile currentUser={props.currentUser} user={displayedUser}/>
-                <MatchButtons currentUser={props.currentUser} displayedUser={displayedUser} pickPotentialMatch={pickPotentialMatch}/>
+                <Profile currentUser={currentUser} user={displayedUser}/>
+                <MatchButtons currentUser={currentUser} displayedUser={displayedUser} pickPotentialMatch={pickPotentialMatch}/>
             </div>
         :
         <p>Loading</p>
@@ -34,7 +36,7 @@ function Recs(props) {
 }
 
 const mapStateToProps = (state) => {
-    return {users: state.users}
+    return {otherUsers: state.otherUsers}
 }
 
 export default connect(mapStateToProps)(Recs);
