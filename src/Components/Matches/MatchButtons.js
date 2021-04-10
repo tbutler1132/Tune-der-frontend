@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 
 import GradeIcon from '@material-ui/icons/Grade';
 import CloseIcon from '@material-ui/icons/Close';
-import { addNewMatch } from '../../Redux/actions';
 
 function MatchButtons(props) {
 //The match buttons are responsible for:
 //1. Triggering the render of a new user to display
-//2. Updating a users' likes and matches
+//2. Updating a users' likes 
 
 //Determine if the current user has previously liked the currently displayed user// BACKEND
     const displayedUserHasLikedCurrentUser = () => {
@@ -45,32 +44,6 @@ function MatchButtons(props) {
         .catch(error => {
             console.log('Error:', error);
         });
-
-        if (displayedUserHasLikedCurrentUser()){
-            const newMatch = {
-                first_id: props.displayedUser.id,
-                second_id: props.currentUser.id
-            }
-
-            const options = {
-                method: "POST",
-                headers: {
-                  "content-type": "application/json",
-                  "accept": "application/json"
-                },
-                body: JSON.stringify({ match: newMatch })
-            }
-
-            fetch("http://localhost:3000/matches", options)
-            .then(r => r.json())
-            .then(data => {
-                console.log(data)
-                props.addNewMatch(data)
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-        }
     }
 
     return (

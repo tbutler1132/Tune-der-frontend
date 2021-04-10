@@ -23,15 +23,20 @@ function RecsContainer(props) {
     
 
 //Find intesection of current user likers and liked to obtain matches
-    const matches = currentUser.liker.filter(user => currentUser.liked.includes(user))
+    // const matches = currentUser.liker.filter(user => currentUser.liked.includes(user))
+
+//Difference
+
+
+
 
 
 //Remove already matched users from potential matches//MOVE TO BACKEND
-    const removeMatches = () => {
+    const potentialMatches = () => {
         const nonMatchedOtherUsers = [...otherUsers]
         for( let i = nonMatchedOtherUsers.length - 1; i >= 0; i--){
-            for ( let j=0; j < currentUser.liked.length; j++){
-                if (nonMatchedOtherUsers[i] && (nonMatchedOtherUsers[i].id === currentUser.liked[j].id)){
+            for ( let j=0; j < currentUser.matches.length; j++){
+                if (nonMatchedOtherUsers[i] && (nonMatchedOtherUsers[i].id === currentUser.matches[j].id)){
                     nonMatchedOtherUsers.splice(i, 1);
                 }
             }
@@ -39,16 +44,19 @@ function RecsContainer(props) {
         return nonMatchedOtherUsers
     }
 
+    console.log(potentialMatches())
+
+
     return (
         otherUsers.length > 0 ?
         <div className="recs-container">
             <div className="left-side">
                 <ProfileHeader currentUser={currentUser} />
-                <Matches matches={matches} currentUser={currentUser}/>
+                <Matches matches={currentUser.matches} currentUser={currentUser}/>
                 <Messages />
             </div>
             <div className="recs">
-                <Recs potentialMatches={removeMatches()} currentUser={currentUser}/>
+                <Recs potentialMatches={potentialMatches()} currentUser={currentUser}/>
             </div>
         </div>
         :

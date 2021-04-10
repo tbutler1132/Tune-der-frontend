@@ -24,10 +24,6 @@ function currentUserReducer(currentState = defaultState.currentUser, action){
             const newLikeObj = {...currentState}
             newLikeObj.liked.push(action.payload.liked)
             return newLikeObj
-        case "add_match":
-            const newMatchObj = {...currentState}
-            newMatchObj.first.push(action.payload.first)
-            return newMatchObj
         default:
             return currentState
     }
