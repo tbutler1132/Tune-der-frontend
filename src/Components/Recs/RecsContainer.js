@@ -16,31 +16,26 @@ function RecsContainer(props) {
 //Destructure props
     const { currentUser, fetchUsers, otherUsers } = props
 
-    console.log(currentUser)
-
-// Fetch users so their profiles can potentially be displayed
+// I want to fetch only users that have not yet been matched with current user
     useEffect(() => {
         fetchUsers(currentUser)
     }, [currentUser, fetchUsers])
+    
 
-//Combine 'matchee' and 'matcher' to create an array of all current user matches
-    const matches = currentUser.first.concat(currentUser.second)
-
-    console.log(matches)
-
+//Find intesection of current user likers and liked to obtain matches
+    const matches = currentUser.liker.filter(user => currentUser.liked.includes(user))
 
 
-//Remove already matched users from potential matches
+//Remove already matched users from potential matches//MOVE TO BACKEND
     const removeMatches = () => {
         const nonMatchedOtherUsers = [...otherUsers]
         for( let i = nonMatchedOtherUsers.length - 1; i >= 0; i--){
-            for ( let j=0; j < matches.length; j++){
-                if (nonMatchedOtherUsers[i] && (nonMatchedOtherUsers[i].id === nonMatchedOtherUsers[j].id)){
+            for ( let j=0; j < currentUser.liked.length; j++){
+                if (nonMatchedOtherUsers[i] && (nonMatchedOtherUsers[i].id === currentUser.liked[j].id)){
                     nonMatchedOtherUsers.splice(i, 1);
                 }
             }
         }
-
         return nonMatchedOtherUsers
     }
 

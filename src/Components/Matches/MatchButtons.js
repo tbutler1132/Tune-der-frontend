@@ -10,13 +10,14 @@ function MatchButtons(props) {
 //1. Triggering the render of a new user to display
 //2. Updating a users' likes and matches
 
-//Determine if the current user has previously liked the currently displayed user
+//Determine if the current user has previously liked the currently displayed user// BACKEND
     const displayedUserHasLikedCurrentUser = () => {
         const likersIds = props.currentUser.likers.map(likers => likers.id)
         return likersIds.includes(props.displayedUser.id)
     }
 
-// Add new Like/Match to the database
+// ------Add new Like to the database------
+
     const addLikeToDatabase = () => {
 
         props.pickPotentialMatch()
@@ -45,7 +46,7 @@ function MatchButtons(props) {
             console.log('Error:', error);
         });
 
-        if (displayedUserHasLikedCurrentUser){
+        if (displayedUserHasLikedCurrentUser()){
             const newMatch = {
                 first_id: props.displayedUser.id,
                 second_id: props.currentUser.id

@@ -18,7 +18,7 @@ function App(props) {
 const {history, currentUser, setCurrentUser} = props
 
 
-  //Check if user has been authenticated 
+//Check if user has been authenticated 
 
   useEffect(() => {
     const token = localStorage.getItem("token")

@@ -14,11 +14,12 @@ function Recs(props) {
     const [displayedUser, changeDisplayedUser] = useState(false)
     
 //  When the component mounts select a user for their profile to be displayed.
+
     useEffect(() => {
         pickPotentialMatch()
     }, [])
 
-//Right now the algo is random but it will be updated to match alike profiles
+//We collect potential matches from the backend, then this function will pick a random one to display to the user
     const pickPotentialMatch = () => {
         const float = Math.random() * (potentialMatches.length - 0) + 0;
         changeDisplayedUser(potentialMatches[Math.floor(float)])
