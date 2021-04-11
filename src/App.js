@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 
 import RecsContainer from './Components/Recs/RecsContainer'
 import UserProfileContainer from './Components/UserProfile/UserProfileContainer'
+import MatchContainer from './Components/Matches/MatchContainer'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 
@@ -89,8 +90,9 @@ const {history, currentUser, setCurrentUser} = props
       :
         <Switch>
           <Route exact path="/"><Redirect to="app/recs"/></Route>
-          <Route path="/app/recs" render={() =><RecsContainer />}/>
-          <Route path="/app/profile" render={() =><UserProfileContainer currentUser={currentUser}/>}/>
+          <Route path="/app/recs" render={() =><RecsContainer history={history} />}/>
+          <Route path="/app/profile" render={() =><UserProfileContainer history={history} currentUser={currentUser}/>}/>
+          {/* <Route path="/app/match" render={() =><MatchContainer currentUser={currentUser}/>}/> */}
         </Switch>
 
       }

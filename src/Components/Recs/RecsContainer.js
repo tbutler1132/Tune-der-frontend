@@ -3,10 +3,13 @@ import {connect} from 'react-redux'
 import {getUsers} from '../../Redux/actions'
 import {LinearProgress} from '@material-ui/core'
 
+
 import Recs from './Recs'
 import Matches from '../Matches/Matches'
-import Messages from '../Messages/Messages'
+import ConversationsContainer from '../Messages/ConversationsContainer'
 import ProfileHeader from '../ProfileHeader'
+import Profile from '../Profile/Profile'
+
 
 
 function RecsContainer(props) {
@@ -44,16 +47,13 @@ function RecsContainer(props) {
         return nonMatchedOtherUsers
     }
 
-    console.log(potentialMatches())
-
-
     return (
         otherUsers.length > 0 ?
         <div className="recs-container">
             <div className="left-side">
-                <ProfileHeader currentUser={currentUser} />
+                <ProfileHeader path={"profile"} history={props.history} currentUser={currentUser} />
                 <Matches matches={currentUser.matches} currentUser={currentUser}/>
-                <Messages />
+                <ConversationsContainer currentUser={currentUser}/>
             </div>
             <div className="recs">
                 <Recs potentialMatches={potentialMatches()} currentUser={currentUser}/>

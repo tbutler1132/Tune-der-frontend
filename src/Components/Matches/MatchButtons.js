@@ -38,12 +38,19 @@ function MatchButtons(props) {
         fetch("http://localhost:3000/likes", options)
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             props.addNewLike(data)
+            if (displayedUserHasLikedCurrentUser()){
+                props.addNewMatch(data)
+            }
         })
         .catch(error => {
             console.log('Error:', error);
         });
+    }
+
+//If the users are a match just automatically create a new convo
+    const createNewConversation = () => {
+
     }
 
     return (

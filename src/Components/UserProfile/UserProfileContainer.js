@@ -13,7 +13,7 @@ function UserProfileContainer(props) {
             {props.currentUser ?
                 <>
                 <div className="left-side">
-                    <ProfileHeader currentUser={props.currentUser}/>
+                    <ProfileHeader path={"recs"} history={props.history} currentUser={props.currentUser}/>
                     <Settings />
                 </div>
                 <div className="recs">
