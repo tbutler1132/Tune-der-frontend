@@ -18,7 +18,7 @@ function UserProfileContainer(props) {
                 </div>
                 <div className="recs">
                     <Switch>
-                        <Route path="/app/profile/edit" render={() =><EditProfile />}/>
+                        <Route path="/app/profile/edit" render={() =><EditProfile history={props.history} currentUser={props.currentUser} />}/>
                         <>
                         <Profile user={props.currentUser}/>
                         <Link to="/app/profile/edit">Edit Profile</Link>

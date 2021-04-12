@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import ReplyIcon from '@material-ui/icons/Reply';
 
+import MessageForm from './MessageForm'
+
 function Conversation(props) {
 
     const [convoOpen, openConvo] = useState(false)
 
     const renderMessages = () => {
         return props.convoObj.messages.map(message => 
-            <div className="message"> 
-            <p key={message.id}>
+            <div key={message.id} className="message"> 
+            <p >
                 {message.user_id === props.currentUser.id ? props.currentUser.name : props.match.name}: {message.content}
             </p>
             </div>
@@ -27,7 +29,7 @@ function Conversation(props) {
             :
             <>
             {renderMessages()}
-            <input></input>
+            <MessageForm convoObj={props.convoObj} currentUser={props.currentUser}/>
             </>
             }
         </div>

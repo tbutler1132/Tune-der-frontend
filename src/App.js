@@ -92,7 +92,10 @@ const {history, currentUser, setCurrentUser} = props
           <Route exact path="/"><Redirect to="app/recs"/></Route>
           <Route path="/app/recs" render={() =><RecsContainer history={history} />}/>
           <Route path="/app/profile" render={() =><UserProfileContainer history={history} currentUser={currentUser}/>}/>
-          {/* <Route path="/app/match" render={() =><MatchContainer currentUser={currentUser}/>}/> */}
+          <Route path="/match/:id" render={({match}) => {
+              const id = parseInt(match.params.id) 
+              return <MatchContainer id={id} currentUser={currentUser}/>
+          }}/>
         </Switch>
 
       }

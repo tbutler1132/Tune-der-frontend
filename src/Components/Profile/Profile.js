@@ -21,6 +21,11 @@ function Profile(props) {
         changeDisplayedDemo(demoDisplay - 1)
     }
 
+    //render tags
+    const renderTags = () => {
+        return props.user.tags.map((tag, i) => <p key={i}>#{tag}</p>)
+    }
+
     //Variables
     const audioSource = `http://localhost:3000/${props.user.demos[demoDisplay].audio_data.url}`
 
@@ -29,9 +34,9 @@ function Profile(props) {
             {expanded ?
                 <> 
 
-                <img id="profile-profile-pic" src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
+                <img id="profile-profile-pic" src={`http://localhost:3000/${props.user.avatar?.url}`} alt="Profile" height="150px" />
 
-                <p>{props.user.demos[demoDisplay].title}</p>
+                {/* <p>{props.user.demos[demoDisplay].title}</p> */}
                 {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
                 <ReactAudioPlayer
                     src={audioSource}
@@ -44,7 +49,7 @@ function Profile(props) {
                 {/* <MusicNoteIcon />  */}
                 <h3>{props.user.role}</h3>
                 <h3>{props.user.location}</h3>
-                <p>#{props.user.tags}</p>
+                {renderTags()}
                 <h4>{props.user.bio}</h4>
 
                 <ExpandLessIcon onClick={() => expandProfile(false)}/>
@@ -52,9 +57,9 @@ function Profile(props) {
                 </>
             :
                 <> 
-                <img src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
+                <img src={`http://localhost:3000/${props.user.avatar?.url}`} alt="Profile" height="150px" />
 
-                <p>{props.user.demos[demoDisplay].title}</p>
+                {/* <p>{props.user.demos[demoDisplay].title}</p> */}
                 {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
                 <ReactAudioPlayer
                     src={audioSource}

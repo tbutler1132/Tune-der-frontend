@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
 import {getUsers} from '../../Redux/actions'
 import {LinearProgress} from '@material-ui/core'
@@ -8,12 +8,15 @@ import Recs from './Recs'
 import Matches from '../Matches/Matches'
 import ConversationsContainer from '../Messages/ConversationsContainer'
 import ProfileHeader from '../ProfileHeader'
-import Profile from '../Profile/Profile'
+// import Profile from '../Profile/Profile'
 
 
 
 function RecsContainer(props) {
 //The primary responsiblity of this component is to fetch and organize data to be passed down to children of the rec container
+
+//State
+    const [matchesOrMessages, toggleMatchesOrMessages] = useState("matches")
 
 
 //Destructure props
@@ -28,9 +31,14 @@ function RecsContainer(props) {
 //Find intesection of current user likers and liked to obtain matches
     // const matches = currentUser.liker.filter(user => currentUser.liked.includes(user))
 
-//Difference
-
-
+//Toggle Matches
+    const toggleMatches = () => {
+        toggleMatchesOrMessages("matches")
+    }
+    
+    const toggleMessages = () => {
+        toggleMatchesOrMessages("messages")
+    }
 
 
 
@@ -52,8 +60,15 @@ function RecsContainer(props) {
         <div className="recs-container">
             <div className="left-side">
                 <ProfileHeader path={"profile"} history={props.history} currentUser={currentUser} />
-                <Matches matches={currentUser.matches} currentUser={currentUser}/>
-                <ConversationsContainer currentUser={currentUser}/>
+                <div className="matches-messages-buttons">
+                    <button onClick={toggleMatches}>Matches</button>
+                    <button  onClick={toggleMessages}>Messages</button>
+                </div>
+                {matchesOrMessages === "matches" ? 
+                    <Matches  matches={currentUser.matches} currentUser={currentUser}/>
+                :
+                    <ConversationsContainer currentUser={currentUser}/>
+                }
             </div>
             <div className="recs">
                 <Recs potentialMatches={potentialMatches()} currentUser={currentUser}/>

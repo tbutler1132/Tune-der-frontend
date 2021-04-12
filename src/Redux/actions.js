@@ -29,3 +29,10 @@ export const addNewMatch = (matchObj) => {
         dispatch({type: "add_match", payload: matchObj})
     }
 }
+
+export const editUser = (userObj) => {
+    console.log(userObj)
+    return function (dispatch){
+        dispatch({type: "edit_profile", payload: userObj})
+    }
+}
