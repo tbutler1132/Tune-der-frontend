@@ -68,6 +68,7 @@ function EditProfile(props) {
     }
 
     return (
+        <div>
         <div className="profile">
             <p>Edit Profile</p>
             <img id="profile-profile-pic" src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
@@ -90,6 +91,7 @@ function EditProfile(props) {
                     <Button type="submit">Submit</Button>
                 </form>
             </div>
+        </div>
         </div>
     );
 }

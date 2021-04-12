@@ -135,3 +135,22 @@ img {
   margin-right: 4px;
   overflow: scroll;
 }
+
+.demos-modal {
+  border: solid;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 5%;
+  padding-bottom: 25%;
+}
+
+.demos-modal-overlay {
+  background-color: aliceblue;
+}
+
+.demo-display {
+  border: solid;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
