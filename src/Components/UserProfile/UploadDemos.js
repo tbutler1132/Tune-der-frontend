@@ -17,12 +17,15 @@ function UploadDemos(props) {
     }
 
     const changeHandler = (e) => {
-        if (e.target.name === 'beat'){
+        console.log(e.target.files[0])
+        if (e.target.name === 'demo'){
             setDemo({ [e.target.name]: e.target.files[0] })  
         } else {
             setDemo({ [e.target.name]: e.target.value })
         }
     }
+
+    console.log(demo.demo)
 
     const demoBlob = (order) => {
        return <p>{props.currentUser.demos[order].title}</p>
@@ -45,12 +48,14 @@ function UploadDemos(props) {
         fetch("http://localhost:3000/demos", options)
         .then(r => r.json())
         .then(data => {
-            uploadFile(demo, data)
+            console.log(data)
+            uploadFile(demo.demo, data)
         })
     }
 
     const uploadFile = (file, demo) => {
-        const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
+        console.log(demo)
+        const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_upload')
         upload.create((error, blob) => {
             if (error) {
                 console.log(error)
@@ -99,6 +104,7 @@ function UploadDemos(props) {
                 :
                     uploadForm()
                 }
+                {uploadForm()}
             </div>
                 
             </ReactModal>

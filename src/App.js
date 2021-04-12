@@ -75,7 +75,7 @@ const {history, currentUser, setCurrentUser} = props
       console.log(data)
       setCurrentUser(data.user)
       localStorage.setItem("token", data.jwt)
-      history.push('/app/recs')
+      history.push('/app/profile/edit')
     })
     .catch(error => console.log(error))
   }

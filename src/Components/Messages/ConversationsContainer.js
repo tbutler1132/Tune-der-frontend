@@ -6,7 +6,7 @@ import Conversation from './Conversation'
 function ConversationsContainer(props) {
 
     
-    //Organize and Render ConversationsContainer
+//Organize and Render ConversationsContainer
     const convos = props.currentUser.initiated_conversations.concat(props.currentUser.received_conversations)
 
     const renderConvos = () => {

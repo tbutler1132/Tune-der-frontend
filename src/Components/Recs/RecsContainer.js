@@ -22,14 +22,11 @@ function RecsContainer(props) {
 //Destructure props
     const { currentUser, fetchUsers, otherUsers } = props
 
-// I want to fetch only users that have not yet been matched with current user
+// Fetch all users, slice current user in reducer
     useEffect(() => {
         fetchUsers(currentUser)
     }, [currentUser, fetchUsers])
     
-
-//Find intesection of current user likers and liked to obtain matches
-    // const matches = currentUser.liker.filter(user => currentUser.liked.includes(user))
 
 //Toggle Matches
     const toggleMatches = () => {
