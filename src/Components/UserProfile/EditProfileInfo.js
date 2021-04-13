@@ -78,7 +78,7 @@ function EditProfileInfo(props) {
             <div>
                 <form onSubmit={submitEditProfileForm} className="edit-profile-textfields">
                     {/* <InputLabel>Role</InputLabel> */}
-                    <Select value={role} variant="outlined" onChange={handleChange} variant="outlined">
+                    <Select value={role} onChange={handleChange} variant="outlined">
                         <MenuItem value={"Artist"}>Artist</MenuItem>
                         <MenuItem value={"Producer"}>Producer</MenuItem>
                         <MenuItem value={"Artist/Producer"}>Artist/Producer</MenuItem>

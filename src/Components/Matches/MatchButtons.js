@@ -16,6 +16,7 @@ function MatchButtons(props) {
     }
 
 // ------Add new Like to the database------
+// If they liked user has already liked the current user, add new match in state
 
     const addLikeToDatabase = () => {
 

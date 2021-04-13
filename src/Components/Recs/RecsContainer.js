@@ -15,14 +15,16 @@ import ProfileHeader from '../ProfileHeader'
 function RecsContainer(props) {
 //The primary responsiblity of this component is to fetch and organize data to be passed down to children of the rec container
 
-//State
+//---State---//
+
+//Toggle matches/messages on left side of screen
     const [matchesOrMessages, toggleMatchesOrMessages] = useState("matches")
 
 
-//Destructure props
+//---Props---//
     const { currentUser, fetchUsers, otherUsers } = props
 
-// Fetch all users, slice current user in reducer
+// Fetch users, slice current user in reducer
     useEffect(() => {
         fetchUsers(currentUser)
     }, [currentUser, fetchUsers])
@@ -39,7 +41,7 @@ function RecsContainer(props) {
 
 
 
-//Remove already matched users from potential matches//MOVE TO BACKEND
+//Remove already matched users from potential matches//REFACTOR
     const potentialMatches = () => {
         const nonMatchedOtherUsers = [...otherUsers]
         for( let i = nonMatchedOtherUsers.length - 1; i >= 0; i--){
@@ -55,6 +57,7 @@ function RecsContainer(props) {
     return (
         otherUsers.length > 0 ?
         <div className="recs-container">
+            
             <div className="left-side">
                 <ProfileHeader path={"profile"} history={props.history} currentUser={currentUser} />
                 <div className="matches-messages-buttons">
@@ -67,9 +70,11 @@ function RecsContainer(props) {
                     <ConversationsContainer currentUser={currentUser}/>
                 }
             </div>
+
             <div className="recs">
                 <Recs potentialMatches={potentialMatches()} currentUser={currentUser}/>
             </div>
+
         </div>
         :
         <LinearProgress />

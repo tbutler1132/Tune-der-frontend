@@ -20,6 +20,7 @@ const {history, currentUser, setCurrentUser} = props
 
 
 //Check if user has been authenticated 
+//If they are, dispatch currenUserObj to redux
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -40,6 +41,7 @@ const {history, currentUser, setCurrentUser} = props
   }, [history, setCurrentUser]);
 
   //Allow user to login
+  //If successful, get profile and dispatch currentUserObj to Redux
 
   const loginHandler = (userInfo) => {
     fetch(`http://localhost:3000/login`, {
@@ -60,6 +62,7 @@ const {history, currentUser, setCurrentUser} = props
   }
 
   //Allow user to sign up
+  //If successful, set currentUserObj and push them to edit so they can finish filling out their profile
 
   const signUpHandler = (userObj) => {
     fetch(`http://localhost:3000/users`, {

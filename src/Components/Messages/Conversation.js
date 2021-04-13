@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import ReplyIcon from '@material-ui/icons/Reply';
 
 import MessageForm from './MessageForm'
 
