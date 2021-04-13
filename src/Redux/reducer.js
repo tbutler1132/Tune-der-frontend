@@ -2,7 +2,8 @@ import {combineReducers} from 'redux'
 
 const defaultState = {
     otherUsers: [],
-    currentUser: false
+    currentUser: false,
+    conversations: []
 }
 
 function otherUsersReducer(currentState = defaultState.otherUsers, action){
@@ -43,9 +44,20 @@ function currentUserReducer(currentState = defaultState.currentUser, action){
     }
 }
 
+function conversationsReducer(currentState = defaultState.conversations, action){
+    switch(action.type){
+        case "add_conversations":
+            console.log(action)
+            return action.payload
+        default:
+            return currentState
+    }
+}
+
 const rootReducer = combineReducers({
     otherUsers: otherUsersReducer,
-    currentUser: currentUserReducer
+    currentUser: currentUserReducer,
+    conversations: conversationsReducer
 })
 
 export default rootReducer

@@ -15,10 +15,12 @@ import ProfileHeader from '../ProfileHeader'
 function RecsContainer(props) {
 //The primary responsiblity of this component is to fetch and organize data to be passed down to children of the rec container
 
-//---State---//
+                                //---State---//
 
 //Toggle matches/messages on left side of screen
     const [matchesOrMessages, toggleMatchesOrMessages] = useState("matches")
+
+    const [matchTest, changeDisplayed] = useState(potentialMatches.length - 1)
 
 
 //---Props---//
@@ -57,7 +59,7 @@ function RecsContainer(props) {
     return (
         otherUsers.length > 0 ?
         <div className="recs-container">
-            
+
             <div className="left-side">
                 <ProfileHeader path={"profile"} history={props.history} currentUser={currentUser} />
                 <div className="matches-messages-buttons">

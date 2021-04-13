@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux'
+import { addConversations } from '../../Redux/actions';
 
 import Conversation from './Conversation'
 
 
 function ConversationsContainer(props) {
 
+    useEffect(() => {
+        addConversations(props.currentUser.initiated_conversations, props.currentUser.received_conversations)
+    })
     
 //Organize and Render ConversationsContainer
     const convos = props.currentUser.initiated_conversations.concat(props.currentUser.received_conversations)
@@ -26,4 +31,14 @@ function ConversationsContainer(props) {
     );
 }
 
-export default ConversationsContainer;
+const mapStateToProps = (state) => {
+    return {
+        conversations: state.conversations,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {addConversations: (iConvoArr, rConvoArr) => dispatch({type: "add_conversations", payload: iConvoArr, rConvoArr})}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConversationsContainer);

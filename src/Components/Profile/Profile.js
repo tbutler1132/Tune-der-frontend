@@ -18,8 +18,6 @@ function Profile(props) {
         
     })
 
-    console.log(props.user)
-
     const demoDisplayIncrement = () => {
         changeDisplayedDemo(demoDisplay + 1)
     }

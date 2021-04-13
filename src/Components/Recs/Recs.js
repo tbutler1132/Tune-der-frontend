@@ -11,6 +11,7 @@ function Recs(props) {
 
     const {potentialMatches, currentUser} = props
 
+//---State---//
     const [displayedUser, changeDisplayedUser] = useState(false)
     
 //  When the component mounts select a user for their profile to be displayed.

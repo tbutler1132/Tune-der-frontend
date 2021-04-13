@@ -36,3 +36,10 @@ export const editUser = (userObj) => {
         dispatch({type: "edit_profile", payload: userObj})
     }
 }
+
+export const addConversations = (iConvoArr, rConvoArr) => {
+    console.log(iConvoArr)
+    return function (dispatch){
+        dispatch({type: "add_conversations", payload: iConvoArr, rConvoArr})
+    }
+}
