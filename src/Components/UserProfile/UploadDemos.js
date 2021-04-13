@@ -1,15 +1,21 @@
 import React, {useState} from 'react';
 import ReactModal from 'react-modal'
 import {DirectUpload} from 'activestorage'
+import {TextField} from '@material-ui/core'
 
 function UploadDemos(props) {
     const [modalOpen, setModalOpen] = useState(false)
     const [demoTitle, setDemoTitle] = useState('')
     const [demo, setDemo] = useState({})
 
+    const demoTitleHandler = (e) => {
+        setDemoTitle(e.target.value);
+    }
+
     const uploadForm = () => {
        return ( 
             <form onSubmit={submitNewDemo}>
+                <TextField onChange={demoTitleHandler} value={demoTitle} label="title" variant="outlined"/>
                 <input type="file" name="demo" onChange={changeHandler}/>
                 <button>Upload</button>
             </form>
@@ -27,7 +33,7 @@ function UploadDemos(props) {
 
     console.log(demo.demo)
 
-    const demoBlob = (order) => {
+    const demoDisplay = (order) => {
        return <p>{props.currentUser.demos[order].title}</p>
     }
 
@@ -55,7 +61,7 @@ function UploadDemos(props) {
 
     const uploadFile = (file, demo) => {
         console.log(demo)
-        const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_upload')
+        const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
         upload.create((error, blob) => {
             if (error) {
                 console.log(error)
@@ -88,23 +94,22 @@ function UploadDemos(props) {
             >
             <div className="demo-display">
                 {props.currentUser.demos[0] ? 
-                    demoBlob(0)
+                    demoDisplay(0)
                 :
                     uploadForm()
                 }
 
                 {props.currentUser.demos[1] ? 
-                    demoBlob(1)
+                    demoDisplay(1)
                 :
                     uploadForm()
                 }
 
                 {props.currentUser.demos[2] ? 
-                    demoBlob(2)
+                    demoDisplay(2)
                 :
                     uploadForm()
                 }
-                {uploadForm()}
             </div>
                 
             </ReactModal>

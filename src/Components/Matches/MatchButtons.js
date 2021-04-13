@@ -49,9 +49,9 @@ function MatchButtons(props) {
     }
 
 //If the users are a match just automatically create a new convo
-    const createNewConversation = () => {
+    // const createNewConversation = () => {
 
-    }
+    // }
 
     return (
         <div>

@@ -21,7 +21,7 @@ function UserProfileContainer(props) {
                         <Route path="/app/profile/edit" render={() =><EditProfile history={props.history} currentUser={props.currentUser} />}/>
                         <>
                         <Profile user={props.currentUser}/>
-                        <Link to="/app/profile/edit">Edit Profile</Link>
+                        <Link to="/app/profile/edit/bio">Edit Profile</Link>
                         </>
                     </Switch>
                 </div>

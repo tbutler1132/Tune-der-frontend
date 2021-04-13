@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ReactAudioPlayer from 'react-audio-player'
@@ -12,6 +12,13 @@ function Profile(props) {
 
     //Create state that represents 3 demos, 3 integers each correspond to 1 demo which will be displayed while state is equal to its respective integer
     const [demoDisplay, changeDisplayedDemo] = useState(0)
+
+
+    useEffect(() => {
+        
+    })
+
+    console.log(props.user)
 
     const demoDisplayIncrement = () => {
         changeDisplayedDemo(demoDisplay + 1)
@@ -27,7 +34,7 @@ function Profile(props) {
     }
 
     //Variables
-    const audioSource = `http://localhost:3000/${props.user.demos[demoDisplay].audio_data.url}`
+    const audioSource = `http://localhost:3000/${props.user.demos[demoDisplay].audio_data?.url}`
 
     return (
         <div className="profile">
