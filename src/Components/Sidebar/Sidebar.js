@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Button} from '@material-ui/core'
 
 import Matches from '../Matches/Matches'
 import ConversationsContainer from '../Messages/ConversationsContainer'
@@ -24,8 +25,8 @@ function Sidebar(props) {
         <div className="left-side">
             <ProfileHeader path={"profile"} history={props.history} currentUser={currentUser} />
             <div className="matches-messages-buttons">
-                <button onClick={toggleMatches}>Matches</button>
-                <button  onClick={toggleMessages}>Messages</button>
+                <Button variant="outlined" onClick={toggleMatches}>Matches</Button>
+                <Button variant="outlined" onClick={toggleMessages}>Messages</Button>
             </div>
             {matchesOrMessages === "matches" ? 
                 <Matches  matches={currentUser.matches} currentUser={currentUser}/>

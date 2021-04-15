@@ -93,7 +93,6 @@ function UploadDemos(props) {
 
     return (
         <div className="profile">
-            <p>Upload Demos</p>
   
             <div className="demo-display">
                 {props.currentUser.demos[0] ? 

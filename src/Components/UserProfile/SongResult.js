@@ -34,8 +34,9 @@ function SongResult(props) {
     }
 
     return (
-        <div>
-            <p onClick={addNewFavoriteSong}>{props.songObj.artist}: {props.songObj.name}</p>
+        <div className="spotify-search-result">
+            <img src={`${props.songObj.image}`} alt="" width="50px" height="50px"/>
+            <p onClick={addNewFavoriteSong}>{props.songObj.artist} - {props.songObj.name}</p>
         </div>
     )
 }
@@ -43,7 +44,7 @@ function SongResult(props) {
 
 const mdp = (dispatch) => {
     return {
-        addNewDemo: (demoObj) => dispatch({type: "add_demo", payload: demoObj}),
+        replaceFavoriteSong: (songObj) => dispatch({type: "add_favorite_song", payload: songObj}),
     }
 }
 

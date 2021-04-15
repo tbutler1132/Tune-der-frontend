@@ -4,6 +4,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ReactAudioPlayer from 'react-audio-player'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 // import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 
@@ -43,25 +44,34 @@ function Profile(props) {
                 <img id="profile-profile-pic" src={`http://localhost:3000/${props.user.avatar?.url}`} alt="Profile" height="150px" />
 
                 {/* <p>{props.user.demos[demoDisplay].title}</p> */}
-                {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
-                <ReactAudioPlayer
-                    src={audioSource}
-                    controls={true}
-                    playing={true}
-                />
-                {demoDisplay !== props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
-
-                <h1>{props.user.name}</h1>
+                <div className="demo-audio">
+                    {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
+                        <ReactAudioPlayer
+                            src={audioSource}
+                            controls={true}
+                            playing={true}
+                        />
+                    {demoDisplay !== props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
+                </div>
+                <h1 className="profile-section">{props.user.name}</h1>
                 {/* <MusicNoteIcon />  */}
-                <h3>{props.user.role}</h3>
-                <h3>{props.user.location}</h3>
-                <h3>Anthem: {props.user.favorite_track?.name}</h3>
+                <h3 className="profile-section">{props.user.role}</h3>
+                <p className="profile-section">{props.user.bio}</p>
+                <div className="profile-location">
+                    <LocationOnIcon /> 
+                    <h3>{props.user.location}</h3>
+                </div>
+                <div className="edit-anthem">
+                    <img src={`${props.user.favorite_track?.image}`} alt="" width="50px" height="50px"/>
+                    <p>{props.user.favorite_track?.artist} - {props.user.favorite_track?.name} </p>
+                </div>
                 <ReactAudioPlayer 
                     src={props.user.favorite_track?.preview}
                     controls={true}
                 />
-                {renderTags()}
-                <h4>{props.user.bio}</h4>
+                <div className="tags">
+                    {renderTags()}
+                </div>
 
                 <ExpandLessIcon onClick={() => expandProfile(false)}/>
 
@@ -71,16 +81,22 @@ function Profile(props) {
                 <img src={`http://localhost:3000/${props.user.avatar?.url}`} alt="Profile" height="150px" />
 
                 {/* <p>{props.user.demos[demoDisplay].title}</p> */}
-                {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
-                <ReactAudioPlayer
-                    src={audioSource}
-                    controls={true}
-                    playing={true}
-                />
-                {demoDisplay !== props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
+                <div className="demo-audio">
+                    {demoDisplay !== 0 ? <ChevronLeftIcon onClick={demoDisplayDecrement}/> : null}
+                        <ReactAudioPlayer
+                            src={audioSource}
+                            controls={true}
+                            playing={true}
+                        />
+                    {demoDisplay !== props.user.demos.length - 1 ? <ChevronRightIcon onClick={demoDisplayIncrement}/> : null}
+                </div>
 
                 <h1>{props.user.name}</h1>
                 <h3>{props.user.role}</h3>
+                <div className="profile-location">
+                    <LocationOnIcon /> 
+                    <h3>{props.user.location}</h3>
+                </div>
 
                 <ExpandMoreIcon onClick={() => expandProfile(true)}/>
                 </>

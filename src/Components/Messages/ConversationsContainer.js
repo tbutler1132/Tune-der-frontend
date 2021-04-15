@@ -19,7 +19,6 @@ function ConversationsContainer(props) {
 
     return (
         <div className="message-container">
-            <h3>Convos</h3>
             {renderConvos()}
         </div>
     );

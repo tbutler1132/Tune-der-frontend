@@ -53,7 +53,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: solid; */
   border-radius: 5%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   /* margin-right: 25%;
@@ -62,26 +61,77 @@
   overflow: scroll;
   height: 600px;
   padding-top: 15px;
+  background-color: white;
+}
+
+.tags {
+  display: flex;
+  justify-content: space-evenly;
+  width: 200px;
+}
+
+.profile-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: thin;
+  border-color: rgb(206, 204, 204);
+  min-width: 400px;
+}
+
+.demo-audio {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2%;
+  min-width: 450px;
+  align-items: center;
 }
 
 /* Edit Profile */
 
 .upload-new-demo {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 400px;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgb(206, 204, 204);
 }
 
 .edit-profile-textfields {
+  /* border: solid; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  min-height: 300px;
+  min-width: 400px;
 }
 
 .edit-anthem {
   display: flex;
+  justify-content: space-around;
+  min-width: 400px;
   align-items: center;
-  border-bottom: gray;
-  margin-top: 7%;
-  margin-bottom: 5%;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgb(206, 204, 204);
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding-bottom: 2%;
+}
+
+.profile-section {
+  display: flex;
+  justify-content: space-around;
+  min-width: 400px;
+  align-items: center;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgb(236, 214, 225);
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding-bottom: 2%;
 }
 
 /* Recs */
@@ -90,29 +140,56 @@
   display: flex;
   justify-content: flex-start;
   margin-bottom: 0%;
+  height: 1000px;
 }
 
+.profile-and-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.match-buttons {
+  margin-top: 4%;
+  justify-content: space-evenly;
+  min-width: 450px;
+  display: flex;
+  align-items: center;
+}
+
+/* Sidebar */
 
 .left-side {
   /* border: solid;
-  border-color: #61dafb; */
+  /* border-color: #61dafb; */ 
   padding-top: 0%;
   width: 20%;
   float: left;
+  background-color: rgb(252, 249, 249);
+}
+
+.matches-messages-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2%;
+}
+
+.message {
+  display: flex;
+  justify-content: left;
 }
 
 .header {
   border: solid;
   border-color: white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);;
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
   
 }
 
 .recs {
-  /* border: solid;
-  border-color: red; */
-  background-color: rgb(250, 246, 246);
+  background:linear-gradient(90deg, #ee89ab 0%, #ecd9af 100%);
   padding-left: 25%;
   padding-right: 25%;
   padding-top: 5%;
@@ -129,19 +206,31 @@ img {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border-bottom: solid;
+  border-top: solid;
+  border-width: thin;
+  border-color: rgb(221, 187, 219);
+  padding-bottom: 4%;
+  padding-top: 4%;
+  margin-right: 2%;
+  margin-left: 2%;
+  border-radius: 2%;
 }
 
 .conversation{
-  border: solid;
-  border-color: purple;
-  background-color: rgb(159, 199, 233);
-  color: white;
+  /* background-color: rgb(243, 236, 243); */
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgb(202, 109, 202);
   min-height: 100px;
   max-height: 300px;
   margin-top: 4%;
   margin-bottom: 4%;
   margin-left: 4px;
   margin-right: 4px;
+  padding-left: 2px;
+  padding-bottom: 2%;
   overflow: scroll;
 }
 
@@ -158,15 +247,51 @@ img {
 }
 
 .demo-display {
-  border: solid;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items: center;
+  margin-right: 25%;
+  margin-left: 25%;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  width: 400px;
+  min-height: 300px;
 }
 
 .upload-demo-form {
   border: solid;
   display: flex;
   flex-direction: column;
+}
+
+.search-spotify-form {
+  display: flex;
+}
+
+.spotify-search-result {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  align-items: center;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgb(206, 204, 204);
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding-bottom: 2%;
+  cursor: pointer;
+}
+
+/* user container */
+
+.user-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0%;
+  height: 1000px;
+}
+
+#edit-profile-button {
+  margin-top: 5%;
 }

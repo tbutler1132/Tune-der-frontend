@@ -51,9 +51,9 @@ function RecsContainer(props) {
                 <Recs fetchMoreUsers={props.fetchUsers} potentialMatches={potentialMatches()} currentUser={currentUser}/>
             </div>
 
-        :
-        <p>Sorry, no one is here right now :/</p>
-        }
+            :
+            <p>Sorry, no one is here right now :/</p>
+            }
         </div>
         :
         <LinearProgress />

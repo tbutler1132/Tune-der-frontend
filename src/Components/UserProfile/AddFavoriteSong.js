@@ -47,7 +47,7 @@ function AddFavoriteSong(props) {
 
     return (
         <div className="profile">
-            <form onSubmit={searchSpotify}>
+            <form onSubmit={searchSpotify} className="search-spotify-form">
                 <TextField onChange={searchQueryHandler} value={searchQuery} label="Search" variant="outlined"/> 
                 <Button type="submit">Search</Button>
             </form>

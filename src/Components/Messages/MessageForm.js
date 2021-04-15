@@ -44,7 +44,7 @@ function MessageForm(props) {
 
     return (
         <div>
-            <TextField onChange={messageHandler} value={messageContent} label="message" variant="outlined"/>
+            <TextField size="small" onChange={messageHandler} value={messageContent} label="message" variant="outlined"/>
             <Button onClick={addMessageToDataBase}>Send</Button>
         </div>
     );

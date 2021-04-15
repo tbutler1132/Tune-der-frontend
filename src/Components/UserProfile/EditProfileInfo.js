@@ -72,15 +72,21 @@ function EditProfileInfo(props) {
         props.history.push('/app/profile/edit/favorite')
     }
 
+    const pushToDemos = () => {
+        props.history.push('/app/profile/edit/demos')
+    }
+
     return (
         <div>
         <div className="profile">
             <img id="profile-profile-pic" src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
             <div className="upload-new-demo">
-                {/* <UploadDemos currentUser={props.currentUser}/> */}
+                <p>Edit Demos</p>
+                <ChevronRight onClick={pushToDemos}/>
             </div>
             <div className="edit-anthem">
-                <p>Anthem: {props.currentUser.favorite_track?.name} </p>
+                <img src={`${props.currentUser.favorite_track?.image}`} alt="" width="50px" height="50px"/>
+                <p>Anthem: {props.currentUser.favorite_track?.artist} - {props.currentUser.favorite_track?.name} </p>
                 <ChevronRight onClick={pushToFavorite}/>
             </div>
             <div >

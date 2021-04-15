@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import GradeIcon from '@material-ui/icons/Grade';
 import CloseIcon from '@material-ui/icons/Close';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 function MatchButtons(props) {
 //The match buttons are responsible for:
@@ -82,9 +82,9 @@ function MatchButtons(props) {
     }
 
     return (
-        <div>
-            <CloseIcon onClick={props.incrementMatchIndex}/>
-            <GradeIcon onClick={addLikeToDatabase}/>
+        <div className="match-buttons">
+            <CloseIcon fontSize="large" onClick={props.incrementMatchIndex}/>
+            <FavoriteIcon color="secondary" fontSize="large" onClick={addLikeToDatabase}/>
         </div>
     );
 }

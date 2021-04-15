@@ -1,28 +1,27 @@
 import React from 'react';
 import {Route, Link, Switch} from 'react-router-dom'
+import {Button} from '@material-ui/core'
 
 import Profile from '../Profile/Profile'
-import Settings from './Settings'
-import ProfileHeader from '../ProfileHeader'
 import EditProfile from './EditProfile'
 import Sidebar from '../Sidebar/Sidebar'
 
 function UserProfileContainer(props) {
 
     return (
-        <div >
+        <div className="user-container">
             {props.currentUser ?
                 <>
-                <div >
-                    <Sidebar history={props.history} currentUser={props.currentUser}/>
-                </div>
+                <Sidebar history={props.history} currentUser={props.currentUser}/>
                 <div className="recs">
                     <Switch>
                         <Route path="/app/profile/edit" render={() =><EditProfile history={props.history} currentUser={props.currentUser} />}/>
-                        <>
-                        <Profile user={props.currentUser}/>
-                        <Link to="/app/profile/edit/bio">Edit Profile</Link>
-                        </>
+                        <div className="profile-and-buttons">
+                            <Profile user={props.currentUser}/>
+                            <Button id="edit-profile-button">
+                                <Link style={{ textDecoration: 'none', color: 'white' }} to="/app/profile/edit/bio">Edit Profile</Link>
+                            </Button>
+                        </div>
                     </Switch>
                 </div>
                 </>

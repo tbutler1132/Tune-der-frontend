@@ -9,7 +9,7 @@ function Conversation(props) {
     const renderMessages = () => {
         return props.convoObj.messages.map(message => 
             <div key={message.id} className="message"> 
-            <p >
+            <p>
                 {message.user_id === props.currentUser.id ? props.currentUser.name : props.match.name}: {message.content}
             </p>
             </div>

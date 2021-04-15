@@ -44,7 +44,7 @@ function Recs(props) {
 
     return (
         // displayedUser  ?
-            <div>
+            <div className="profile-and-buttons">
                 <Profile currentUser={currentUser} user={potentialMatches[displayedProfileIndex]}/>
                 <MatchButtons resetPotentialMatch={resetPotentialMatch} match={potentialMatches[displayedProfileIndex]} incrementMatchIndex={incrementPotentialMatch} currentUser={currentUser}/>
             </div>
