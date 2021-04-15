@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import ReactModal from 'react-modal'
 import {DirectUpload} from 'activestorage'
 import {TextField} from '@material-ui/core'
+import {connect} from 'react-redux'
 
 function UploadDemos(props) {
-    const [modalOpen, setModalOpen] = useState(false)
     const [demoTitle, setDemoTitle] = useState('')
     const [demo, setDemo] = useState({})
 
@@ -14,11 +14,13 @@ function UploadDemos(props) {
 
     const uploadForm = () => {
        return ( 
-            <form onSubmit={submitNewDemo}>
-                <TextField onChange={demoTitleHandler} value={demoTitle} label="title" variant="outlined"/>
-                <input type="file" name="demo" onChange={changeHandler}/>
-                <button>Upload</button>
-            </form>
+            <div className="upload-demo-form">
+                <form onSubmit={submitNewDemo}>
+                    <TextField onChange={demoTitleHandler} value={demoTitle} label="title" variant="outlined"/>
+                    <input type="file" name="demo" onChange={changeHandler}/>
+                    <button>Upload</button>
+                </form>
+            </div>
        )
     }
 
@@ -76,22 +78,23 @@ function UploadDemos(props) {
                 body: JSON.stringify({audio_data: blob.signed_id})
                 })
                 .then(r => r.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    console.log(data)
+                    const demo = data.demo
+                    demo.audio_data = {}
+                    demo.audio_data.url = data.audio_data_url
+                    console.log(demo)
+                    props.addDemo(demo)
+                })
 
             }
         })
     } 
 
     return (
-        <div>
-            <p onClick={() => setModalOpen(true)}>Upload Demos</p>
-            <ReactModal 
-            ariaHideApp={false} 
-            isOpen={modalOpen}
-            shouldCloseOnOverlayClick={true}
-            className="demos-modal"
-            // overlayClassName="demos-modal-overlay"
-            >
+        <div className="profile">
+            <p>Upload Demos</p>
+  
             <div className="demo-display">
                 {props.currentUser.demos[0] ? 
                     demoDisplay(0)
@@ -112,9 +115,15 @@ function UploadDemos(props) {
                 }
             </div>
                 
-            </ReactModal>
+    
         </div>
     );
 }
 
-export default UploadDemos;
+const mdp = (dispatch) => {
+    return {
+        addDemo: (demoObj) => dispatch({type: "add_demo", payload: demoObj}),
+    }
+}
+
+export default connect(null, mdp)(UploadDemos);

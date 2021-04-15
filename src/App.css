@@ -73,6 +73,15 @@
 .edit-profile-textfields {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+
+.edit-anthem {
+  display: flex;
+  align-items: center;
+  border-bottom: gray;
+  margin-top: 7%;
+  margin-bottom: 5%;
 }
 
 /* Recs */
@@ -151,6 +160,13 @@ img {
 .demo-display {
   border: solid;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: stretch;
   align-items: center;
+}
+
+.upload-demo-form {
+  border: solid;
+  display: flex;
+  flex-direction: column;
 }

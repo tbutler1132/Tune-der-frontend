@@ -5,16 +5,16 @@ import Profile from '../Profile/Profile'
 import Settings from './Settings'
 import ProfileHeader from '../ProfileHeader'
 import EditProfile from './EditProfile'
+import Sidebar from '../Sidebar/Sidebar'
 
 function UserProfileContainer(props) {
 
     return (
-        <div>
+        <div >
             {props.currentUser ?
                 <>
-                <div className="left-side">
-                    <ProfileHeader path={"recs"} history={props.history} currentUser={props.currentUser}/>
-                    <Settings />
+                <div >
+                    <Sidebar history={props.history} currentUser={props.currentUser}/>
                 </div>
                 <div className="recs">
                     <Switch>

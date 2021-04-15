@@ -30,6 +30,12 @@ export const addNewMatch = (matchObj) => {
     }
 }
 
+export const addNewConversation = (convoObj) => {
+    return function (dispatch){
+        dispatch({type: "add_convo", payload: convoObj})
+    }
+}
+
 export const editUser = (userObj) => {
     console.log(userObj)
     return function (dispatch){
@@ -37,9 +43,22 @@ export const editUser = (userObj) => {
     }
 }
 
-export const addConversations = (iConvoArr, rConvoArr) => {
-    console.log(iConvoArr)
+export const addMessage = (messageObj) => {
+    console.log(messageObj)
     return function (dispatch){
-        dispatch({type: "add_conversations", payload: iConvoArr, rConvoArr})
+        dispatch({type: "add_message", payload: messageObj})
     }
 }
+
+export const replaceFavoriteSong = (songObj) => {
+    return function (dispatch){
+        dispatch({type: "add_favorite_song", payload: songObj})
+    }
+}
+
+export const addNewDemo = (demoObj) => {
+    return function (dispatch){
+        dispatch({type: "add_demo", payload: demoObj})
+    }
+}
+

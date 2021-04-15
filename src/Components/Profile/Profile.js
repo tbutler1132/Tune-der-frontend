@@ -13,6 +13,7 @@ function Profile(props) {
     //Create state that represents 3 demos, 3 integers each correspond to 1 demo which will be displayed while state is equal to its respective integer
     const [demoDisplay, changeDisplayedDemo] = useState(0)
 
+    console.log(props.user.demos)
 
     useEffect(() => {
         
@@ -54,6 +55,11 @@ function Profile(props) {
                 {/* <MusicNoteIcon />  */}
                 <h3>{props.user.role}</h3>
                 <h3>{props.user.location}</h3>
+                <h3>Anthem: {props.user.favorite_track?.name}</h3>
+                <ReactAudioPlayer 
+                    src={props.user.favorite_track?.preview}
+                    controls={true}
+                />
                 {renderTags()}
                 <h4>{props.user.bio}</h4>
 

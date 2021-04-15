@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {TextField, Button} from '@material-ui/core'
+import {connect} from 'react-redux'
+import { addMessage } from '../../Redux/actions';
 
 function MessageForm(props) {
     const [messageContent, setMessageContent] = useState('')
@@ -31,6 +33,7 @@ function MessageForm(props) {
         .then(r => r.json())
         .then(data => {
             console.log(data)
+            props.addMessage(data)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -47,4 +50,10 @@ function MessageForm(props) {
     );
 }
 
-export default MessageForm;
+const mdp = (dispatch) => {
+    return {
+        addMessage: (messageObj) => dispatch({type: "add_message", payload: messageObj}),
+    }
+}
+
+export default connect(null, mdp)(MessageForm);

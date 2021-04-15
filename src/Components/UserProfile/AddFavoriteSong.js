@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {Button, TextField} from '@material-ui/core'
+import {connect} from 'react-redux'
+
+import SongResult from './SongResult'
 
 function AddFavoriteSong(props) {
 
@@ -37,7 +40,7 @@ function AddFavoriteSong(props) {
 
 
     const renderResults = () => {
-        return searchResults.map(result => <SongResult currentUser={props.currentUser} key={result.spotify_id} songObj={result} />)
+        return searchResults.map(result => <SongResult history={props.history} addFavoriteSong={props.addFavoriteSong} currentUser={props.currentUser} key={result.spotify_id} songObj={result} />)
     }
 
 
@@ -57,41 +60,3 @@ export default AddFavoriteSong;
 
 //Helper Component? lol
 
-function SongResult (props) {
-
-    const addNewFavoriteSong = () => {
-        
-        const newFavoriteSong = {
-            name: props.songObj.name,
-            artist: props.songObj.artist,
-            spotify_id: props.songObj.spotify_id,
-            image: props.songObj.image,
-            user_id: props.currentUser.id
-        }
-
-        const options = {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              "accept": "application/json"
-            },
-            body: JSON.stringify({ favorite_track: newFavoriteSong })
-        }
-
-        fetch("http://localhost:3000/favorite_tracks", options)
-        .then(r => r.json())
-        .then(data => {
-            console.log(data)
-        })
-        .catch(error => {
-            console.log('Error:', error);
-        }); 
-    }
-
-    return (
-        <div>
-            <p onClick={addNewFavoriteSong}>{props.songObj.artist}: {props.songObj.name}</p>
-        </div>
-    )
-    
-}

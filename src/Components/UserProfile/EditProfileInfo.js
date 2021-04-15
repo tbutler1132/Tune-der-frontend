@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import {TextField, Button, Select, MenuItem} from '@material-ui/core'
+import {ChevronRight} from '@material-ui/icons'
 import {connect} from 'react-redux'
 
 import UploadDemos from './UploadDemos'
 
 
 function EditProfileInfo(props) {
-    const [artistName, setArtistName] = useState('')
-    const [bio, setBio] = useState('')
+    const [artistName, setArtistName] = useState(props.currentUser.artist_name)
+    const [bio, setBio] = useState(props.currentUser.bio)
     // const [genre, setGenre] = useState('')
     const [tags, setTags] = useState([])
-    const [role, setRole] = useState(props.currentUser.role)
-    const [location, setLocation] = useState('')
+    const [role, setRole] = useState('')
+    const [location, setLocation] = useState(props.currentUser.location)
 
     const artistNameHandler = (e) => {
         setArtistName(e.target.value)
@@ -67,15 +68,22 @@ function EditProfileInfo(props) {
         });
     }
 
+    const pushToFavorite = () => {
+        props.history.push('/app/profile/edit/favorite')
+    }
+
     return (
         <div>
         <div className="profile">
             <img id="profile-profile-pic" src="https://pbs.twimg.com/profile_images/485706215016505344/Du9c94_W_400x400.jpeg" alt="" height="150px" />
             <div className="upload-new-demo">
-                <UploadDemos currentUser={props.currentUser}/>
+                {/* <UploadDemos currentUser={props.currentUser}/> */}
             </div>
-            <p>{props.currentUser.favorite_track?.name} add Link</p>
-            <div>
+            <div className="edit-anthem">
+                <p>Anthem: {props.currentUser.favorite_track?.name} </p>
+                <ChevronRight onClick={pushToFavorite}/>
+            </div>
+            <div >
                 <form onSubmit={submitEditProfileForm} className="edit-profile-textfields">
                     {/* <InputLabel>Role</InputLabel> */}
                     <Select value={role} onChange={handleChange} variant="outlined">
@@ -87,7 +95,7 @@ function EditProfileInfo(props) {
                     <TextField onChange={locationHandler} value={location} label="Location" variant="outlined"/>
                     {/* <TextField onChange={genreHandler} value={genre} label="Genre" variant="outlined"/> */}
                     <TextField onChange={bioHandler} value={bio} label="Bio" variant="outlined"/>
-                    <TextField onChange={tagsHandler} value={tags} label="Tags" variant="outlined"/>
+                    {/* <TextField onChange={tagsHandler} value={tags} label="Tags" variant="outlined"/> */}
                     <Button type="submit">Submit</Button>
                 </form>
             </div>

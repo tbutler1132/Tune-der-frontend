@@ -5,10 +5,7 @@ import {LinearProgress} from '@material-ui/core'
 
 
 import Recs from './Recs'
-import Matches from '../Matches/Matches'
-import ConversationsContainer from '../Messages/ConversationsContainer'
-import ProfileHeader from '../ProfileHeader'
-// import Profile from '../Profile/Profile'
+import Sidebar from '../Sidebar/Sidebar'
 
 
 
@@ -19,9 +16,7 @@ function RecsContainer(props) {
 
 //Toggle matches/messages on left side of screen
     const [matchesOrMessages, toggleMatchesOrMessages] = useState("matches")
-
-    const [matchTest, changeDisplayed] = useState(potentialMatches.length - 1)
-
+    const [test, triggerTest] = useState(false)
 
 //---Props---//
     const { currentUser, fetchUsers, otherUsers } = props
@@ -29,26 +24,15 @@ function RecsContainer(props) {
 // Fetch users, slice current user in reducer
     useEffect(() => {
         fetchUsers(currentUser)
-    }, [currentUser, fetchUsers])
-    
-
-//Toggle Matches
-    const toggleMatches = () => {
-        toggleMatchesOrMessages("matches")
-    }
-    
-    const toggleMessages = () => {
-        toggleMatchesOrMessages("messages")
-    }
-
-
+    }, [])
 
 //Remove already matched users from potential matches//REFACTOR
     const potentialMatches = () => {
         const nonMatchedOtherUsers = [...otherUsers]
+        const matchedOrLiked = currentUser.matches.concat(currentUser.liked)
         for( let i = nonMatchedOtherUsers.length - 1; i >= 0; i--){
-            for ( let j=0; j < currentUser.matches.length; j++){
-                if (nonMatchedOtherUsers[i] && (nonMatchedOtherUsers[i].id === currentUser.matches[j].id)){
+            for ( let j=0; j < matchedOrLiked.length; j++){
+                if (nonMatchedOtherUsers[i] && (nonMatchedOtherUsers[i].id === matchedOrLiked[j].id)){
                     nonMatchedOtherUsers.splice(i, 1);
                 }
             }
@@ -56,32 +40,27 @@ function RecsContainer(props) {
         return nonMatchedOtherUsers
     }
 
+    console.log(otherUsers)
+
     return (
         otherUsers.length > 0 ?
         <div className="recs-container">
-
-            <div className="left-side">
-                <ProfileHeader path={"profile"} history={props.history} currentUser={currentUser} />
-                <div className="matches-messages-buttons">
-                    <button onClick={toggleMatches}>Matches</button>
-                    <button  onClick={toggleMessages}>Messages</button>
-                </div>
-                {matchesOrMessages === "matches" ? 
-                    <Matches  matches={currentUser.matches} currentUser={currentUser}/>
-                :
-                    <ConversationsContainer currentUser={currentUser}/>
-                }
-            </div>
-
+            <Sidebar history={props.history} currentUser={currentUser} />
+            {potentialMatches().length > 0 ? 
             <div className="recs">
-                <Recs potentialMatches={potentialMatches()} currentUser={currentUser}/>
+                <Recs fetchMoreUsers={props.fetchUsers} potentialMatches={potentialMatches()} currentUser={currentUser}/>
             </div>
 
+        :
+        <p>Sorry, no one is here right now :/</p>
+        }
         </div>
         :
         <LinearProgress />
     );
 }
+
+
 
 //Add state of users to props
 const mapStateToProps = (state) => {

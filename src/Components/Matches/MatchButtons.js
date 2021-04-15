@@ -12,7 +12,7 @@ function MatchButtons(props) {
 //Determine if the current user has previously liked the currently displayed user// BACKEND
     const displayedUserHasLikedCurrentUser = () => {
         const likersIds = props.currentUser.likers.map(likers => likers.id)
-        return likersIds.includes(props.displayedUser.id)
+        return likersIds.includes(props.match.id)
     }
 
 // ------Add new Like to the database------
@@ -20,11 +20,11 @@ function MatchButtons(props) {
 
     const addLikeToDatabase = () => {
 
-        props.pickPotentialMatch()
+        props.resetPotentialMatch()
 
         const newLike = {
             liker_id: props.currentUser.id,
-            liked_id: props.displayedUser.id,
+            liked_id: props.match.id,
         }
 
         const options = {
@@ -39,24 +39,51 @@ function MatchButtons(props) {
         fetch("http://localhost:3000/likes", options)
         .then(r => r.json())
         .then(data => {
+            console.log(data)
             props.addNewLike(data)
             if (displayedUserHasLikedCurrentUser()){
                 props.addNewMatch(data)
+                createNewConversation()
             }
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+
+
+    }
+
+// If the users are a match just automatically create a new convo
+    const createNewConversation = () => {
+        const newConversation = {
+            sender_id: props.currentUser.id,
+            reciever_id: props.match.id,
+        }
+
+        const options = {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              "accept": "application/json"
+            },
+            body: JSON.stringify({ conversation: newConversation })
+        }
+
+        fetch("http://localhost:3000/conversations", options)
+        .then(r => r.json())
+        .then(data => {
+            console.log(data)
+            props.addNewConversation(data)
+  
         })
         .catch(error => {
             console.log('Error:', error);
         });
     }
 
-//If the users are a match just automatically create a new convo
-    // const createNewConversation = () => {
-
-    // }
-
     return (
         <div>
-            <CloseIcon onClick={props.pickPotentialMatch}/>
+            <CloseIcon onClick={props.incrementMatchIndex}/>
             <GradeIcon onClick={addLikeToDatabase}/>
         </div>
     );
@@ -69,7 +96,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         addNewLike: (likeObj) => dispatch({type: "add_like", payload: likeObj}),
-        addNewMatch: (matchObj) => dispatch({type: "add_match", payload: matchObj})
+        addNewMatch: (matchObj) => dispatch({type: "add_match", payload: matchObj}),
+        addNewConversation: (convoObj) => dispatch({type: "add_convo", payload: convoObj})
     }
 }
 

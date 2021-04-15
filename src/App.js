@@ -12,7 +12,6 @@ import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 
 
-
 function App(props) {
 
 //Desctructure Props
@@ -97,7 +96,7 @@ const {history, currentUser, setCurrentUser} = props
           <Route path="/app/profile" render={() =><UserProfileContainer history={history} currentUser={currentUser}/>}/>
           <Route path="/match/:id" render={({match}) => {
               const id = parseInt(match.params.id) 
-              return <MatchContainer id={id} currentUser={currentUser}/>
+              return <MatchContainer history={history} id={id} currentUser={currentUser}/>
           }}/>
         </Switch>
 
