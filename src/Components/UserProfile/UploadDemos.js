@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import ReactModal from 'react-modal'
 import {DirectUpload} from 'activestorage'
 import {TextField} from '@material-ui/core'
 import {connect} from 'react-redux'
+import {Button} from '@material-ui/core'
 
 function UploadDemos(props) {
     const [demoTitle, setDemoTitle] = useState('')
@@ -16,9 +16,9 @@ function UploadDemos(props) {
        return ( 
             <div className="upload-demo-form">
                 <form onSubmit={submitNewDemo}>
-                    <TextField onChange={demoTitleHandler} value={demoTitle} label="title" variant="outlined"/>
-                    <input type="file" name="demo" onChange={changeHandler}/>
-                    <button>Upload</button>
+                    <TextField size="small" onChange={demoTitleHandler} value={demoTitle} label="title" variant="outlined"/>
+                    <input className="upload-demo-input" type="file" name="demo" onChange={changeHandler}/>
+                    <Button>Upload</Button>
                 </form>
             </div>
        )
@@ -95,20 +95,29 @@ function UploadDemos(props) {
         <div className="profile">
   
             <div className="demo-display">
-                {props.currentUser.demos[0] ? 
-                    demoDisplay(0)
+                {props.currentUser.demos[0] ?
+                    <div className="demo-replace-display"> 
+                        {demoDisplay(0)}
+                        <Button>Replace</Button>
+                    </div>
                 :
                     uploadForm()
                 }
 
                 {props.currentUser.demos[1] ? 
-                    demoDisplay(1)
+                    <div className="demo-replace-display"> 
+                        {demoDisplay(1)}
+                        <Button>Replace</Button>
+                    </div>
                 :
                     uploadForm()
                 }
 
                 {props.currentUser.demos[2] ? 
-                    demoDisplay(2)
+                    <div className="demo-replace-display"> 
+                        {demoDisplay(2)}
+                        <Button>Upload</Button>
+                    </div>
                 :
                     uploadForm()
                 }

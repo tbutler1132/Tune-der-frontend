@@ -15,8 +15,7 @@ function Recs(props) {
     // const [displayedUser, changeDisplayedUser] = useState(false)
     const [displayedProfileIndex, incrementIndex] = useState(0)
 
-    console.log(displayedProfileIndex)
-    console.log(potentialMatches.length)
+
     
 //  When the component mounts select a user for their profile to be displayed.
 

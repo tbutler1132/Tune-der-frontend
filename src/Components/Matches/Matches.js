@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 
 function Matches(props) {
 //This component takes the matches gathered in the RecsContainer and renders them 
+
+console.log(props.matches)
     
     const renderMatches = () => {
         return props.matches.map(match =>

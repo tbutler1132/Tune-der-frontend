@@ -40,8 +40,6 @@ function RecsContainer(props) {
         return nonMatchedOtherUsers
     }
 
-    console.log(otherUsers)
-
     return (
         otherUsers.length > 0 ?
         <div className="recs-container">
