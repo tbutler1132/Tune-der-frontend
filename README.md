@@ -1,17 +1,44 @@
-# Getting Started with Create React App
-
-Music tinder is an application that hopes to connect musicians
 
 
-My assessment of the application:
-1. I think many improvements can be made on the backend. I would like to organize my data much better so that I can completely seperate concerns on the front end. This would also make state
-    management much clearer and easier
-2. I also want to improve my undestanding of the component lifecycle. 
+To run project locally on Mac:
 
-Future features
-1. Right now there is no algorithm that will present more likely matches. Obviously developing this feature would be really cool. Right now being that it is a smaller and theoretically
-niche application that would attract a similiar user base, there is no need.
-    a. Along the above lines, full Spotify integration would allow users to have a better understanding of each other's tastes
-2. Instagram integration. Instagram is huge for musicians to market themeselves and is one of the most widely used networking services. Integrating 
-it directly into the app would be a huge plus
-3. UI animation
+
+Clone both the backend and frontend repos
+
+cd into tune-der-backend
+
+If you do not have rbenv installed, install it
+    check if you have rbenv: $ rbenv -v
+    Install rbenv: $ brew install rbenv
+    
+Install ruby 3.0.2
+    $ rbenv install 3.0.2
+
+Run bundle install to install required gems
+    $ bundle install
+    
+Setup the database
+    $ bundle e rails db:setup
+    $ bundle e rails db:migrate
+    
+Install PostgresSQL if it is not already
+    check if it installed: $ postgres -v
+    Install via Homebrew: $ brew install postgresSQL
+    Start the service: $ brew services start postgresql
+ 
+Run the rails server
+    $ bundle e rails s
+    
+cd into Tune-der-frontend
+
+    $ npm install
+    $ npm start
+    
+    
+
+
+    
+
+    
+  
+
